@@ -1,0 +1,24 @@
+.accTable {
+  padding: 1em;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  background-color: #f7f7f7;
+}
+
+.hdrcell {
+  height: 2.5em;
+  text-align: left;
+  border: 0;
+  color: #5eb9b9;
+  background-color: #fff;
+  padding: 1em;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.cell {
+  border-bottom: 1px solid lightgrey;
+  padding: 0.25em;
+  max-width: 400px;
+  padding: 0.75em 1em;
+}
