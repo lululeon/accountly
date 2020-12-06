@@ -15,6 +15,9 @@ a {
   box-sizing: border-box;
 }
 
+footer {
+  background-color: #fff;
+}
 
 /* general table styles */
 table{
