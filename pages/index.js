@@ -4,28 +4,29 @@ import Banner from '../components/Banner'
 import ReactTable from '../components/ReactTable/ReactTable'
 import styles from '../styles/Home.module.css'
 
-const tmpData = [
-  {
-    Date: '2013-12-22',
-    Company: 'SHAW CABLESYSTEMS CALGARY AB',
-    Ledger: 'Phone & Internet Expense',
-    Amount: '-110.71',
-  },
-  {
-    Date: '2013-11-22',
-    Company: 'Greenfields',
-    Ledger: 'Dark Ledger',
-    Amount: '-73.50',
-  },
-  {
-    Date: '2013-10-22',
-    Company: 'The Renegades',
-    Ledger: 'Refunds',
-    Amount: '550.33',
-  }
-]
+export async function getServerSideProps(context) {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_BASE_URL
 
-export default function Home() {
+  try {
+    const res = await fetch(`${baseUrl}/api/transactions`)
+
+    const responseData = await res.json()
+    if (!responseData || !responseData.ok) throw new Error('failed to fetch transactions!')
+
+    const { data } = responseData
+
+    return {
+      props: { data }, // will be passed to the page component as props
+    }  
+  } catch (error) {
+    return {
+      props: { data: null },
+    }
+  }
+
+}
+
+export default function Home({data}) {
   const columns = React.useMemo(
     () => [
       {
@@ -58,7 +59,14 @@ export default function Home() {
       <main className={styles.main}>
         <Banner />
         <div className={styles.grid}>
-          <ReactTable columns={columns} data={tmpData} />
+          { data ? (
+            <ReactTable columns={columns} data={data.transactions} />
+          ) : (
+            <div className={styles.error}>
+              <h3>An Error occurred while fetching data!</h3>
+              <p>Please try again or reach out to us for assistance!</p>
+            </div>
+          )}
         </div>
       </main>
 

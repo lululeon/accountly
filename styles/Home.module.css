@@ -25,6 +25,14 @@
   align-items: center;
 }
 
+.error {
+  background-color: #fff1f3;
+  border-radius: 6px;
+  color: #d48ea2;
+  padding: 2em;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .footer img {
   margin-left: 0.5rem;
 }
