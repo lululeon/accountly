@@ -32,3 +32,15 @@ table{
 thead {
   box-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
+
+/* general browser elements for now - normally you would have a proper theme / css framework */
+button, input, select {
+  padding: 8px;
+  background: #f8ffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+button[disabled] {
+  /* needed for some browsers */
+  opacity: 0.4;
+}

@@ -37,18 +37,20 @@ const ReactTable = ({columns, data, rowsPerPage=10}) => {
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th className={styles.hdrcell} {...column.getHeaderProps()}>{column.render('Header')}</th>
+                <th width={column.width} className={styles.hdrcell} {...column.getHeaderProps()}>{column.render('Header')}</th>
               ))}
             </tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
+        <tbody className={styles.tblbody} {...getTableBodyProps()}>
           {page.map((row, i) => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()}>
+              <tr className={styles.striped} {...row.getRowProps()}>
                 {row.cells.map(cell => {
-                  return <td className={styles.cell} {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  {/* hack to allow passed in styles, to support app-specific styling */}
+                  const extraClass = cell.column.extraClass ? styles[cell.column.extraClass] : ''
+                  return <td className={`${extraClass} ${styles.cell}`} {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
               </tr>
             )

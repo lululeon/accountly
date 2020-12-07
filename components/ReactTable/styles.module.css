@@ -22,3 +22,19 @@
   max-width: 400px;
   padding: 0.75em 1em;
 }
+
+.tblbody .striped:nth-child(odd) .cell.bolder {
+  color: initial;
+}
+
+.tblbody {
+  font-weight: 600;
+}
+
+.tblbody .striped:nth-child(odd) {
+  color: #999;
+}
+
+.tblbody .striped:nth-child(even) {
+  color: #5eb9b9;
+}
