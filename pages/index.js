@@ -49,7 +49,7 @@ export default function Home({data}) {
   // get the sum of all transaction amounts
   // (assumption based on mockup: value at top of amounts column is a total; an average would not make much sense):
   useEffect(() => {
-    const sum = totalData.map(trxn => parseFloat(trxn['Amount'])).reduce((total, nextValue) => total += nextValue)
+    const sum = totalData.map(trxn => parseFloat(trxn['Amount'])).reduce((total, nextValue) => total += nextValue, 0)
     setTotalAmount(sum)
   }, [totalData])
   
